@@ -1,0 +1,26 @@
+{% set name = "talys" %}
+{% set version = "1.9" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://tendl.web.psi.ch/tendl_2019/{{ name }}/{{ name }}.tar
+  sha256: ffa74d04e99b66ba55c50e2d304bd7f343e8ae5f309d89e4afa55124e59115bd
+  patches:
+    - 0001-flexible-data-path.patch
+
+build:
+  number: 0
+  skip: True  # [win]
+
+requirements:
+  build:
+    - {{ compiler('fortran') }}
+
+about:
+  home: https://tendl.web.psi.ch/tendl_2019/talys.html
+  license: GPL-2.0
+  license_family: GPL
+  summary: 'A nuclear reaction program'

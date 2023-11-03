@@ -1,0 +1,363 @@
+diff -ur a/source/astroout.f b/source/astroout.f
+--- a/source/astroout.f	2023-10-23 18:19:42.522501360 +0200
++++ b/source/astroout.f	2023-10-23 18:45:21.887505087 +0200
+@@ -13,7 +13,7 @@
+       parameter    (numZ1=numZ+1,numN1=numN+1)
+       logical      lexist
+       character*4  machar
+-      character*90 mafile
++      character*4096 mafile
+       character*13 astrofile
+       character*1  targetparity,yesno
+       integer      Acomp,Zcomp,Ncomp,i,Z,A,ires,iresprod,iwriterp,ia,
+diff -ur a/source/branching.f b/source/branching.f
+--- a/source/branching.f	2023-10-23 18:19:42.210502029 +0200
++++ b/source/branching.f	2023-10-23 18:45:55.127446095 +0200
+@@ -12,7 +12,7 @@
+       logical      lexist
+       character*10 branchchar
+       character*80 line,word(40)
+-      character*90 branchfile
++      character*4096 branchfile
+       integer      Zix,Nix,iz,ia,iword,ilev0,ilev1,nbr,k
+       real         sum,bra
+ c
+diff -ur a/source/brosafy.f b/source/brosafy.f
+--- a/source/brosafy.f	2023-10-23 18:19:41.894502706 +0200
++++ b/source/brosafy.f	2023-10-23 18:46:29.139385184 +0200
+@@ -12,7 +12,7 @@
+       logical          lexist
+       character*6      gschar
+       character*8      filen
+-      character*90     gsfile,precfile,barfile
++      character*4096   gsfile,precfile,barfile
+       integer          Zix,Nix,Z,A,Zbrosa,amassmax,numoff,k,i,massdif,
+      +                 index1,index2,amassar(1:7),amassdum,iloop,
+      +                 numtempsl,numtempst,numtempst2
+diff -ur a/source/decaydata.f b/source/decaydata.f
+--- a/source/decaydata.f	2023-10-23 18:19:43.394499492 +0200
++++ b/source/decaydata.f	2023-10-23 18:47:18.223296399 +0200
+@@ -11,7 +11,8 @@
+       include "talys.cmb"
+       logical      lexist
+       character*8  decaychar
+-      character*80 decayfile,string
++      character*80 string
++      character*4096 decayfile
+       integer      Zix,Z,Nbegin,Nend,Abegin,Aend,N,Nix,ia,is,NC,iline,i
+       real         TT,rrt
+ c
+diff -ur a/source/deformpar.f b/source/deformpar.f
+--- a/source/deformpar.f	2023-10-23 18:19:42.370501686 +0200
++++ b/source/deformpar.f	2023-10-23 18:48:10.387201006 +0200
+@@ -12,7 +12,7 @@
+       logical      lexist,first2,first3,first4
+       character*1  colltype1,deftype1,leveltype1
+       character*6  defchar
+-      character*90 deffile
++      character*4096 deffile
+       integer      Zix,Nix,Z,N,A,ia,ndisc,i,natpar,k,iirot,idef,irot,ii,
+      +             nex,distance,k2,odd,vibband1,lband1,Kmag1,iphonon1,
+      +             nrotlev,type,ibar
+diff -ur a/source/densitypar.f b/source/densitypar.f
+--- a/source/densitypar.f	2023-10-23 18:19:42.870500614 +0200
++++ b/source/densitypar.f	2023-10-23 18:48:27.587169334 +0200
+@@ -12,7 +12,7 @@
+       logical          lexist,inpalev,inpdeltaW,inpalimit,inpgammald
+       character*5      denchar
+       character*22     denformat
+-      character*90     denfile
++      character*4096   denfile
+       integer          Zix,Nix,Z,N,A,ldmod,ia,Nlow0,Ntop0,ibar,imax,
+      +                 imin,i,oddZ,oddN,iloop
+       real             ald0,pshift0,scutoffsys,sigsum,denom,rj,sd,ald,
+diff -ur a/source/densitytable.f b/source/densitytable.f
+--- a/source/densitytable.f	2023-10-23 18:19:43.562499132 +0200
++++ b/source/densitytable.f	2023-10-23 18:44:47.143566150 +0200
+@@ -11,7 +11,7 @@
+       include "talys.cmb"
+       logical          lexist
+       character*2      denchar
+-      character*90     denfile
++      character*4096   denfile
+       integer          Zix,Nix,Z,A,ibar,nloop,ldmod,ploop,ia,parity,
+      +                 nex,J
+       real             Ktriax,Eex,ald,ignatyuk,spincut,term
+diff -ur a/source/fissionpar.f b/source/fissionpar.f
+--- a/source/fissionpar.f	2023-10-23 18:19:42.270501900 +0200
++++ b/source/fissionpar.f	2023-10-23 19:00:46.969743350 +0200
+@@ -11,7 +11,7 @@
+       include "talys.cmb"
+       logical      lexist
+       character*6  fischar
+-      character*90 fisfile,hbsfile,c2file
++      character*4096 fisfile,hbsfile,c2file
+       integer      Zix,Nix,fislocal,Z,N,A,ia,i,j,il,modz,modn,nbar,istat
+       real         bar1,bar2,hw1,hw2,egs,lbar0,esp,bb,vv,Cbar
+ c
+diff -ur a/source/gammapar.f b/source/gammapar.f
+--- a/source/gammapar.f	2023-10-23 18:19:42.026502422 +0200
++++ b/source/gammapar.f	2023-10-23 19:00:46.981743326 +0200
+@@ -13,7 +13,7 @@
+       character*6  gamchar
+       character*20 wtablechar
+       character*80 key
+-      character*90 gamfile
++      character*4096 gamfile
+       integer      Zix,Nix,Z,A,N,ia,irad,l,nen,it,i
+       real         eg1,sg1,gg1,eg2,sg2,gg2,egamref,enum,denom,ee,et,ft,
+      +             factor,fe1(numTqrpa),fstrength,temp,dtemp,fe1t,fm1,
+diff -ur a/source/input1.f b/source/input1.f
+--- a/source/input1.f	2023-10-23 18:19:43.950498301 +0200
++++ b/source/input1.f	2023-10-23 18:49:31.447050866 +0200
+@@ -14,7 +14,8 @@
+       character*10 afile
+       character*15 bestchar
+       character*40 bestpath
+-      character*80 word(40),key,value,bestfile
++      character*80 word(40),key,value
++      character*4096 bestfile
+       integer      i,i2,inull,ipath,type,iz,nbest,J,k,nen,pbeg,parity,
+      +             inum,negrid,lenbest,istat
+       real         Ein,etmp,enincF,deninc,E
+diff -ur a/source/integral.f b/source/integral.f
+--- a/source/integral.f	2023-10-23 18:19:43.542499175 +0200
++++ b/source/integral.f	2023-10-23 18:50:11.226976430 +0200
+@@ -16,7 +16,7 @@
+       character*3    Astring,ext
+       character*8    reac,reacstr(numflux)
+       character*80   word(40)
+-      character*132  xsfile,fluxfile
++      character*4096  xsfile,fluxfile
+       character*200  line
+       integer        i,istat,nen,Nspec,Nxs,nen0,is,k,L
+       real           Efluxup(0:numenin),Eflux(0:numenin),fspec(numenin),
+diff -ur a/source/levels.f b/source/levels.f
+--- a/source/levels.f	2023-10-23 18:19:43.814498592 +0200
++++ b/source/levels.f	2023-10-23 18:50:25.058950448 +0200
+@@ -12,7 +12,7 @@
+       logical      lexist
+       character*1  bas(numlev)
+       character*6  levelchar
+-      character*90 levfile
++      character*4096 levfile
+       integer      Zix,Nix,Z,A,nlev2,ia,nlevlines,nnn,i,j,klev(numlev),
+      +             ii,nb,Lis,N
+       real         br(numlev),con(numlev)
+diff -ur a/source/machine.f b/source/machine.f
+--- a/source/machine.f	2023-10-23 18:19:42.386501651 +0200
++++ b/source/machine.f	2023-10-23 18:51:54.730780707 +0200
+@@ -10,7 +10,7 @@
+ c
+       include "talys.cmb"
+       logical       lexist
+-      character*132 home
++      character*4096 home
+ c
+ c The null device is a "black hole" for output that is produced, but not
+ c of interest to the user. Some ECIS output files fall in this category.
+@@ -31,8 +31,8 @@
+ c
+ c The maximum length of the path is 60 characters
+ c
+-      home='/Users/koning/'
+-      path=trim(home)//'talys/structure/'
++      call getenv("CONDA_PREFIX", home)
++      path=trim(home)//'/share/talys/structure/'
+ c
+ c Test to check accessibility of structure files
+ c
+diff -ur a/source/massdis.f b/source/massdis.f
+--- a/source/massdis.f	2023-10-23 18:19:42.662501060 +0200
++++ b/source/massdis.f	2023-10-23 18:54:50.310443202 +0200
+@@ -18,7 +18,8 @@
+       character*6  nucstring
+       character*8  Estring
+       character*13 fffile
+-      character*132 gefpath,ffpath,Efile,ffname,Yfile(2)
++      character*132 ffname
++      character*4096 gefpath,ffpath,Efile,Yfile(2)
+       character*132 string
+       real         Exfis(1000),xsfis(1000),Jfis,fisepsA,fisepsB,
+      +             partfisxs,sumpre,sumpost,Fmulti,beldm1(136,203),
+diff -ur a/source/massdisout.f b/source/massdisout.f
+--- a/source/massdisout.f	2023-10-23 18:19:44.006498181 +0200
++++ b/source/massdisout.f	2023-10-23 18:55:06.466411857 +0200
+@@ -10,7 +10,7 @@
+ c
+       include "talys.cmb"
+       character*12 isostring(0:1)
+-      character*90 fpyieldfile,fpfile
++      character*4096 fpyieldfile,fpfile
+       integer      iz,ia,in,nen,nex
+ c
+ c ****************** Output of fission yields **************************
+diff -ur a/source/masses.f b/source/masses.f
+--- a/source/masses.f	2023-10-23 18:19:42.486501437 +0200
++++ b/source/masses.f	2023-10-23 18:55:13.598398007 +0200
+@@ -11,7 +11,7 @@
+       include "talys.cmb"
+       logical          lexist,flagduflo
+       character*7      masschar
+-      character*90     massfile
++      character*4096   massfile
+       integer          Zix,Z,Nbegin,Nend,Abegin,Aend,ia,N,Nix,A,p,type,
+      +                 i,L
+       real             exc,b2,b4,gs
+diff -ur a/source/nubarout.f b/source/nubarout.f
+--- a/source/nubarout.f	2023-10-23 18:19:42.646501094 +0200
++++ b/source/nubarout.f	2023-10-23 18:55:17.574390280 +0200
+@@ -9,7 +9,7 @@
+ c ****************** Declarations and common blocks ********************
+ c
+       include "talys.cmb"
+-      character*90 nufile
++      character*4096 nufile
+       integer      type,nen
+ c
+ c Write results to separate files
+diff -ur a/source/omppar.f b/source/omppar.f
+--- a/source/omppar.f	2023-10-23 18:19:43.406499466 +0200
++++ b/source/omppar.f	2023-10-23 18:55:27.762370477 +0200
+@@ -13,7 +13,7 @@
+       character*1  omptype,Rpart
+       character*8  ompchar
+       character*72 optmodfile
+-      character*132 ompfile
++      character*4096 ompfile
+       character*132 string
+       integer      Zix,Nix,Z,N,A,k,iz,ia,i,nomp,ii,nen,kk,j,NE,Zt,At,
+      +             Zbeg,Zend,Abeg,Aend,Rnum
+diff -ur a/source/phdensitytable.f b/source/phdensitytable.f
+--- a/source/phdensitytable.f	2023-10-23 18:19:42.174502106 +0200
++++ b/source/phdensitytable.f	2023-10-23 18:55:44.914337094 +0200
+@@ -11,7 +11,7 @@
+       include "talys.cmb"
+       logical      lexist
+       character*5  denchar
+-      character*90 denfile
++      character*4096 denfile
+       integer      Zix,Nix,Z,A,ia,nex,i,nex2
+       real         phden2(0:numdens,numconf),phden(0:numdens,numconf),
+      +             sum
+diff -ur a/source/phdensitytablejp.f b/source/phdensitytablejp.f
+--- a/source/phdensitytablejp.f	2023-10-23 18:19:43.218499869 +0200
++++ b/source/phdensitytablejp.f	2023-10-23 18:55:48.730329659 +0200
+@@ -13,7 +13,7 @@
+       logical          lexist
+       character*5      denchar
+       character*6      phdir
+-      character*90     denfile
++      character*4096   denfile
+       integer          Zix,Nix,Z,A,ia,parity,nex,J,istat
+       real             ephjpgrid
+       double precision ldtot,ld2j1(0:numJ)
+diff -ur a/source/racapinit.f b/source/racapinit.f
+--- a/source/racapinit.f	2023-10-23 18:19:43.198499912 +0200
++++ b/source/racapinit.f	2023-10-23 18:56:03.198301468 +0200
+@@ -24,7 +24,7 @@
+       double precision ldbpos, ldbneg, ldepos, ldeneg
+       double precision lldbpos,lldepos,lldbneg,lldeneg
+       double precision ldtabpos,ldtabneg,density
+-      character*100 filespec
++      character*4096 filespec
+       double precision ldmdposj(numdensracap,0:numJph),
+      +          ldmdnegj(numdensracap,0:numJph),
+      +          phmdposj(numdensracap,0:numJph),
+diff -ur a/source/radialtable.f b/source/radialtable.f
+--- a/source/radialtable.f	2023-10-23 18:19:42.402501617 +0200
++++ b/source/radialtable.f	2023-10-23 18:57:24.346142813 +0200
+@@ -11,7 +11,7 @@
+       include "talys.cmb"
+       logical      lexist
+       character*6  radchar
+-      character*90 radfile
++      character*4096 radfile
+       integer      Zix,Nix,Z,A,ia,i,nradjlm,j
+       real         h,dr,rp0,rp1,rn0,rn1,ap,an,expo
+ c
+diff -ur a/source/resonance.f b/source/resonance.f
+--- a/source/resonance.f	2023-10-23 18:19:42.834500691 +0200
++++ b/source/resonance.f	2023-10-23 18:57:37.010117975 +0200
+@@ -14,9 +14,9 @@
+       logical      lexist
+       character*9  afile
+       character*12 xsfile,rpfile,pfile
+-      character*72 resfile
+-      character*72 outfile
+-      character*132 infile
++      character*4096 resfile
++      character*4096 outfile
++      character*4096 infile
+       character*80 string,headstring(5)
+       integer      iT,Ntemp,MF,MT,i,nlin,j,k,NR,NPr,NP0,NT,Ntot,Nh,
+      +             ifile,Zix,Nix,nen
+diff -ur a/source/resonancepar.f b/source/resonancepar.f
+--- a/source/resonancepar.f	2023-10-23 18:19:43.774498678 +0200
++++ b/source/resonancepar.f	2023-10-23 18:57:44.714102858 +0200
+@@ -11,7 +11,7 @@
+       include "talys.cmb"
+       logical      lexist
+       character*6  reschar
+-      character*90 resfile
++      character*4096 resfile
+       integer      Zix,Nix,Z,A,ia,Nrrf
+       real         D0f,dD0f,gamgamf,dgamgamf
+ c
+diff -ur a/source/strucinitial.f b/source/strucinitial.f
+--- a/source/strucinitial.f	2023-10-23 18:19:42.678501026 +0200
++++ b/source/strucinitial.f	2023-10-23 18:57:48.678095076 +0200
+@@ -12,7 +12,7 @@
+       logical      lexist
+       character*2  phstring1(14)
+       character*4  phstring2(72)
+-      character*90 denfile
++      character*4096 denfile
+       integer      Zix,Nix,Z,N,A,type,i,k,l,irad,nen,nex,ipar,j,in,ip,
+      +             id,it,ih,ia,is,type2
+       real         Eout,degrid,Eeps
+diff -ur a/source/talys.cmb b/source/talys.cmb
+--- a/source/talys.cmb	2023-10-23 18:19:42.742500889 +0200
++++ b/source/talys.cmb	2023-10-23 18:59:01.261952265 +0200
+@@ -140,7 +140,7 @@
+ c
+       common /machinec/ nulldev,path
+       character*13  nulldev
+-      character*132 path
++      character*4096 path
+ c
+ c *********************** subroutine constants *************************
+ c
+@@ -180,7 +180,7 @@
+      +             flagbestbr,flagbestend
+       character*1  ptype0
+       character*2  Starget
+-      character*72 energyfile
++      character*4096 energyfile
+       integer      nlines,Ztarget,k0,Atarget,Ntarget,Zinit,Ninit,Ainit,
+      +             nin,numinc,npopE,npopJ,npopP,Ztarget0,Atarget0
+       real         eninc,enincmin,enincmax,Estop,EdistE,PdistE,PdistJP
+@@ -405,11 +405,11 @@
+      +                  astroE,Ebeam,Eback,Ibeam,Area,rhotarget
+       logical      flagrescue,preeqadjust,ompadjustF,ompadjustp,
+      +             adjustTJ,ldadjust,gamadjust,fisadjust
+-      character*80 adjustkey,adjustfile
+-      character*72 levelfile,deformfile,hbtransfile,clas2file,
++      character*4096 adjustkey,adjustfile
++      character*4096 levelfile,deformfile,hbtransfile,clas2file,
+      +             optmodfileN,optmodfileP,Exlfile,densfile,radialfile,
+      +             ompenergyfile,rescuefile,massdir
+-      character*132 yieldfile
++      character*4096 yieldfile
+       character*3  radiounit,yieldunit
+       character*1  unitTirrad,unitTcool
+       integer      spincutmodel,shellmodel,kvibmodel,Nlow,Ntop,msdbins,
+@@ -462,7 +462,7 @@
+      +        fileresidual,filechannels,filerecoil,filefission,
+      +        filegamdis,filedensity,filepsf,flagsacs,flagintegral,
+      +        flagcompo,flagblock
+-      character*72 xsfluxfile,fluxname
++      character*4096 xsfluxfile,fluxname
+       integer          transpower,ddxecount,ddxacount,Nflux
+       real             xseps,popeps,Rfiseps,fileddxe,fileddxa,
+      +                 integralexp
