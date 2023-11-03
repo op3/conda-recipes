@@ -1,0 +1,33 @@
+{% set name = "tv" %}
+{% set version = "1.9.13" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://web.archive.org/web/20150803023404if_/http://www.ikp.uni-koeln.de/src/{{ name }}-{{ version }}.tar.gz
+  sha256: 8f462e9ecdbd016aef1288a49d52205b6954553d2105baa8e3c2d11c4aa6f831
+
+build:
+  number: 0
+  skip: True  # [win]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+  run:
+    - xorg-libxaw
+    - xorg-libxaw3d
+    - xorg-libxpm
+    - libmfile
+  host:
+    - xorg-libxaw
+    - xorg-libxaw3d
+    - xorg-libxpm
+    - libmfile
+
+about:
+  home: https://web.archive.org/web/20150803023407/http://www.ikp.uni-koeln.de/misc/doc/Tv_user-manual/Tv_user-manual.html
+  license: Custom
+  summary: 'Spectra- and matrix-analysis program developed at IKP, Köln, Germany'
