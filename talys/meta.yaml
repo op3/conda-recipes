@@ -1,26 +1,44 @@
-{% set name = "talys" %}
-{% set version = "1.9" %}
+{% set version = "2.0" %}
 
 package:
-  name: {{ name|lower }}
+  name: talys-suite
   version: {{ version }}
 
 source:
-  url: https://tendl.web.psi.ch/tendl_2019/{{ name }}/{{ name }}.tar
-  sha256: ffa74d04e99b66ba55c50e2d304bd7f343e8ae5f309d89e4afa55124e59115bd
-  patches:
-    - 0001-flexible-data-path.patch
+  url: https://nds.iaea.org/talys/codes/talys.tar
+  sha256: 3e7136a210cee958f1480351419b1c18d59efb01ba3582fd660bbd0c9fe46dc3
 
 build:
   number: 0
   skip: True  # [win]
 
-requirements:
-  build:
-    - {{ compiler('fortran') }}
+outputs:
+  - name: talys-data
+    build:
+      script:
+        - build-talys-data.sh
+
+  - name: talys-base
+    build:
+      script:
+        - build-talys-base.sh
+    requirements:
+      build:
+        - {{ compiler('fortran') }}
+
+  - name: talys
+    build:
+      script:
+        - echo "Nothing to build here, just add dependencies."
+    requirements:
+      run:
+        - {{ pin_subpackage('talys-base', exact=True) }}
+        - {{ pin_subpackage('talys-data', exact=True) }}
 
 about:
-  home: https://tendl.web.psi.ch/tendl_2019/talys.html
-  license: GPL-2.0
-  license_family: GPL
+  home: https://nds.iaea.org/talys/
+  dev_url: https://github.com/arjankoning1/talys
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
   summary: 'A nuclear reaction program'
