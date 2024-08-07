@@ -15,6 +15,7 @@ build:
 outputs:
   - name: talys-data
     build:
+      noarch: generic
       script:
       - |
         for dir in structure samples doc misc; do
@@ -31,6 +32,7 @@ outputs:
 
   - name: talys-base
     build:
+      noarch: generic
       script: 
       - |
         datapath="${PREFIX}/share/talys"
