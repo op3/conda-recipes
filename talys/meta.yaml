@@ -43,6 +43,7 @@ outputs:
         sed -i "s/^  codedir = '.*'/  codedir = '${datapathnew}\/'/" machine.f90
 
         # Hardcoding the username does not make any sense
+        # For windows, should we use USERNAME instead?
         sed -i "s/^  user = '.*'/  call getenv('USER',user)/" machine.f90
 
         # Paths can become quite long
@@ -70,6 +71,9 @@ outputs:
       run:
         - {{ pin_subpackage('talys-base', exact=True) }}
         - {{ pin_subpackage('talys-data', exact=True) }}
+    test:
+      commands:
+        - echo "projectile n\nelement Pb\nmass 208\nenergy 10.0" | talys
 
 about:
   home: https://nds.iaea.org/talys/
@@ -78,3 +82,5 @@ about:
   license_family: MIT
   license_file: LICENSE
   summary: 'A nuclear reaction program'
+  description: |
+    TALYS is a software package for the simulation of nuclear reactions below 200 MeV. TALYS is based on state-of-art nuclear structure and reaction models.
